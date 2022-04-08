@@ -190,7 +190,7 @@ void loop() {
   
   ///////////////////////// SET HIGHS AND LOWS /////////////////////////
 
-  if (millis() >= refresh + (24*60*60*1000)){
+  if (millis() >= refresh + (24*60*60*1000)){        // Reset High and Low after 24 hours, 86400000 milliseconds in a day
     high_temp = temp;
     low_temp = temp;
     high_rh = rh;
