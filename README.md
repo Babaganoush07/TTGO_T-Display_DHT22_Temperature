@@ -14,7 +14,7 @@
 
 
 ## General Information
-- This is my *FIRST* esp32 project.
+- This is my **FIRST** esp32 project.
 - I could not find a digital thermaometer that met my needs.
 - Wanted the Temp, the RH and the 24 hour Highs and Lows.
 - TTGO T-Display: [Amazon](https://www.amazon.com/dp/B099MPFJ9M?psc=1&ref=ppx_yo2ov_dt_b_product_details)
@@ -49,12 +49,15 @@
 - **TFT_eSPI**
 	- In Arduino/libraries/TFT_eSPI/User_Setup_Select.h
 	- Comment out this line: `#include <User_Setup.h> // Default setup is root library folder`
-	- Un comment this line: `#include <User_Setups/Setup25_TTGO_T_Display.h>  // Setup file for ESP32 and TTGO T-Display ST7789V SPI bus TFT`
+	- Un-comment this line: `#include <User_Setups/Setup25_TTGO_T_Display.h>  // Setup file for ESP32 and TTGO T-Display ST7789V SPI bus TFT`
 
 
 ## Usage
 - Once the IDE is set up, and the components wired.
-- Just plug it in, that should be it.
+- Plug in your T-Display.
+- Verify your Port.
+- Click the Upload arrow.
+- And I think that's it.
 
 
 ## Project Status
@@ -65,10 +68,10 @@ Project is: _in progress_.
 To do:
 - Add images.
 - Still need an external battery.
-- Need to make a case
+- Need to make a case.
 
 
 ## Acknowledgements
-- Big thanks to [Retro Tech & Electronics](https://www.youtube.com/channel/UC_HRlflCd1ogZBmCu3_Mr0g) for the [TTGO](https://youtu.be/UE1mtlsxfKM) and [DHT22](https://youtu.be/u7277VShso4) information
-- Got the Battery info from [oxinon](https://github.com/oxinon/TTGO-T-Display-Name-Badge/blob/master/oxinon-name-badge/oxinon-name-badge.ino)
-- Got the README template from [ritaly](https://github.com/ritaly/README-cheatsheet)
+- Big thanks to [Retro Tech & Electronics](https://www.youtube.com/channel/UC_HRlflCd1ogZBmCu3_Mr0g) for the [TTGO](https://youtu.be/UE1mtlsxfKM) and [DHT22](https://youtu.be/u7277VShso4) information.
+- Got the Battery info from [oxinon](https://github.com/oxinon/TTGO-T-Display-Name-Badge/blob/master/oxinon-name-badge/oxinon-name-badge.ino).
+- Got the README template from [ritaly](https://github.com/ritaly/README-cheatsheet).
