@@ -16,6 +16,8 @@
 ## General Information
 - I could not find a digital thermaometer that met my needs.
 - Wanted the Temp, the RH and the 24 hour Highs and Lows.
+- TTGO T-Display: [Amazon](https://www.amazon.com/dp/B099MPFJ9M?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+- DHT22: [Amazon](https://www.amazon.com/dp/B073F472JL?psc=1&ref=ppx_yo2ov_dt_b_product_details)
 
 
 ## Technologies Used
