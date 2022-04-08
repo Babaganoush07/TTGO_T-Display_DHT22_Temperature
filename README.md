@@ -23,6 +23,7 @@
 ## Technologies Used
 - [Adruino 1.8.19](https://www.arduino.cc/en/software)
 - [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
+- [Adafruit Unified Sensor](https://github.com/adafruit/Adafruit_Sensor) (Dependancy for DHT library)
 - [DHT sensor library](https://github.com/adafruit/DHT-sensor-library)
 
 
