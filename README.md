@@ -22,9 +22,8 @@
 
 ## Technologies Used
 - [Adruino 1.8.19](https://www.arduino.cc/en/software)
-- TFT_eSPI
-- Adafruit Unified Sensor
-- DHT sensor library
+- [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
+- [DHT sensor library](https://github.com/adafruit/DHT-sensor-library)
 
 
 ## Features
