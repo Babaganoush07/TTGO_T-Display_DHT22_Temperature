@@ -188,6 +188,12 @@ void loop() {
   int temp = dht.readTemperature(true); // range of -40 to 257 true = F
   int rh = dht.readHumidity(); // range of 0 to 100
   
+  // Check if any reads failed.
+  if (isnan(rh) || isnan(temp)) {
+    Serial.println(F("Failed to read from DHT sensor!"));
+    return;
+  }
+  
   ///////////////////////// SET HIGHS AND LOWS /////////////////////////
 
   if (millis() >= refresh + (24*60*60*1000)){        // Reset High and Low after 24 hours, 86400000 milliseconds in a day
