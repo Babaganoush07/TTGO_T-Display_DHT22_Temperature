@@ -1,4 +1,3 @@
-
 #include <DHT.h>
 #include <TFT_eSPI.h>
 #include <SPI.h>
@@ -191,7 +190,7 @@ void loop() {
   
   ///////////////////////// SET HIGHS AND LOWS /////////////////////////
 
-  if (millis() >= refresh + (1 * 60 * 1000)){   // 24 hours is (24*60*60*1000)
+  if (millis() >= refresh + (24*60*60*1000)){
     high_temp = temp;
     low_temp = temp;
     high_rh = rh;
