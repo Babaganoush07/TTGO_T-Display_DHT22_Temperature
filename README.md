@@ -14,6 +14,7 @@
 
 
 ## General Information
+- This is my *FIRST* esp32 project.
 - I could not find a digital thermaometer that met my needs.
 - Wanted the Temp, the RH and the 24 hour Highs and Lows.
 - TTGO T-Display: [Amazon](https://www.amazon.com/dp/B099MPFJ9M?psc=1&ref=ppx_yo2ov_dt_b_product_details)
@@ -36,7 +37,7 @@
 
 
 ## Screenshots
-None yet.
+-![DHT22wiring](https://user-images.githubusercontent.com/94538153/162485826-41eff1d1-e1b9-491a-ac0f-2e291b7a6195.jpg)
 
 
 ## Setup
