@@ -37,7 +37,10 @@
 
 
 ## Screenshots
--![DHT22wiring](https://user-images.githubusercontent.com/94538153/162485826-41eff1d1-e1b9-491a-ac0f-2e291b7a6195.jpg)
+- ![TFT_eSPI](https://user-images.githubusercontent.com/94538153/162488633-a6887fd5-325b-4ed0-ba23-afcef23e9872.png "TFT_eSPI Library Image")
+- ![AdafruitUnifiedSensor](https://user-images.githubusercontent.com/94538153/162489075-3b57403f-0405-49c1-aa66-3387ea798d48.png "Adafruit Unified Sensor Image")
+- ![DHTsensorLibrary](https://user-images.githubusercontent.com/94538153/162488862-89af9448-5ba8-4e7a-a414-3fb66ad52b57.png "DHT sensor Library Image")
+- ![DHT22wiring](https://user-images.githubusercontent.com/94538153/162485826-41eff1d1-e1b9-491a-ac0f-2e291b7a6195.jpg "T-Display / DHT22 wiring diagram")
 
 
 ## Setup
@@ -45,7 +48,7 @@
 - You will need the Adruino IDE. (I am on windows)
 - Add [esp32 support](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/) by adding *https://dl.espressif.com/dl/package_esp32_index.json* in the preferences
 - Select the board: Tools -> Board: -> TTGO LoRa32-OLED V1
-- Set the Serial at 9600
+- Set the Serial at 921600
 - **TFT_eSPI**
 	- In Arduino/libraries/TFT_eSPI/User_Setup_Select.h
 	- Comment out this line: `#include <User_Setup.h> // Default setup is root library folder`
