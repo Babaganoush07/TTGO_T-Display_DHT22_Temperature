@@ -1,18 +1,18 @@
 
-//#include <DHT.h>
+#include <DHT.h>
 #include <TFT_eSPI.h>
 #include <SPI.h>
 
 ///////////////////////// CREATE INSTANCES /////////////////////////
 
 TFT_eSPI tft = TFT_eSPI();
-//DHT dht(DHTPIN, DHTTYPE);
+DHT dht(DHTPIN, DHTTYPE);
 
 ///////////////////////// SET VARIABLES /////////////////////////
 
 // SET THE PIN FOR THE DHT22
-//#define DHTPIN 17
-//#define DHTTYPE DHT22
+#define DHTPIN 17
+#define DHTTYPE DHT22
 
 // SET THE HIGHS TO THE MINIMUM AND LOWS TO THE MAXIMUM
 // SO THAT FOR THE FIRST LOOP THE CURRENT TEMP IS BOTH > LOW AND < HIGH
@@ -26,9 +26,9 @@ int low_rh = 100;
 int refresh = 0;
 
 ///////////////////////// GET BATTERY VOLTAGE /////////////////////////
-//#define ADC_PIN 34 // Battery Voltage Pin
-//int vref = 1100;
-//float voltage = 0.0;
+#define ADC_PIN 34 // Battery Voltage Pin
+int vref = 1100;
+float voltage = 0.0;
 
 void show_battery(){
   uint16_t v = analogRead(ADC_PIN);
@@ -157,7 +157,7 @@ void setup() {
 
   Serial.begin(9600);
   tft.init();
-  // dht.begin();
+  dht.begin();
   
   ///////////////////////// SET STATIC SCREEN ELEMENTS /////////////////////////
   
@@ -186,12 +186,8 @@ void loop() {
   delay(200);   // THIS PREVENTS THE DEBOUNCE FROM THE SLEEP INTERUPT
   Serial.println("Getting temps.");
   
-  // int temp = dht.readTemperature(true); // range of -40 to 257 true = F
-  // int rh = dht.readHumidity(); // range of 0 to 100
-  
-  // DELTE THESE 2 LATER
-  int temp = random(-40, 257);
-  int rh = random(0, 100);
+  int temp = dht.readTemperature(true); // range of -40 to 257 true = F
+  int rh = dht.readHumidity(); // range of 0 to 100
   
   ///////////////////////// SET HIGHS AND LOWS /////////////////////////
 
@@ -252,8 +248,7 @@ void loop() {
   tft.drawNumber(low_rh, tft.width() / 2 + 35, 230);
 
   //////////////////////////////////////////////////////////////////////
-  //go_to_sleep(15 * 60000); // GET NEW DATA EVERY 15 MINUTES
   
-  // DELETE THIS LATER
-  go_to_sleep(10000); // 10 Seconds?
+  go_to_sleep(15 * 60000); // GET NEW DATA EVERY 15 MINUTES
+
 }
