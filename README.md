@@ -14,7 +14,7 @@
 
 
 ## General Information
-- I could not find a digital thermaometer that meet my needs.
+- I could not find a digital thermaometer that met my needs.
 - Wanted the Temp, the RH and the 24 hour Highs and Lows.
 
 
@@ -50,7 +50,7 @@ None yet.
 
 
 ## Usage
-- Once the IDE is set up, and the componemts wired.
+- Once the IDE is set up, and the components wired.
 - Just plug it in, that should be it.
 
 
