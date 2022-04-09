@@ -76,5 +76,5 @@ To do:
 
 ## Acknowledgements
 - Big thanks to [Retro Tech & Electronics](https://www.youtube.com/channel/UC_HRlflCd1ogZBmCu3_Mr0g) for the [TTGO](https://youtu.be/UE1mtlsxfKM) and [DHT22](https://youtu.be/u7277VShso4) information.
-- Got the Battery info from [oxinon](https://github.com/oxinon/TTGO-T-Display-Name-Badge/blob/master/oxinon-name-badge/oxinon-name-badge.ino).
+- Got the Battery info from [oxinon](https://github.com/oxinon/TTGO-T-Display-Name-Badge).
 - Got the README template from [ritaly](https://github.com/ritaly/README-cheatsheet).
