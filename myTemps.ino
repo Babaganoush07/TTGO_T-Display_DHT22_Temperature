@@ -42,7 +42,9 @@ void show_battery(){
   tft.fillRect(4, 4, 2, 12, TFT_DARKGREY);   //LEFT
   tft.fillRect(32, 4, 2, 14, TFT_DARKGREY);  //RIGHT
   tft.fillRect(34, 8, 3, 6, TFT_DARKGREY);   //TIP
+  
   tft.setTextSize(1);
+  tft.setTextColor(TFT_WHITE, TFT_BLACK);
 
   if(battery_voltage <= 2.99){
     tft.fillRect(4, 4, 28, 2, TFT_RED);
