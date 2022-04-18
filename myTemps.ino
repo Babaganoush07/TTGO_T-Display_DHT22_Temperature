@@ -2,11 +2,6 @@
 #include <TFT_eSPI.h>
 #include <SPI.h>
 
-///////////////////////// CREATE INSTANCES /////////////////////////
-
-TFT_eSPI tft = TFT_eSPI();
-DHT dht(DHTPIN, DHTTYPE);
-
 ///////////////////////// SET VARIABLES /////////////////////////
 
 // SET THE PIN FOR THE DHT22
@@ -23,6 +18,11 @@ int low_rh = 100;
 
 // USED TO REFRESH THE HIGHS AND LOWS EVERY 24 HOURS
 int refresh = 0;
+
+///////////////////////// CREATE INSTANCES /////////////////////////
+
+TFT_eSPI tft = TFT_eSPI();
+DHT dht(DHTPIN, DHTTYPE);
 
 ///////////////////////// GET BATTERY VOLTAGE /////////////////////////
 #define ADC_PIN 34 // Battery Voltage Pin
@@ -97,7 +97,6 @@ void show_battery(){
   tft.setTextColor(TFT_GREEN, TFT_BLACK); 
   tft.drawString("TEMPERATURE", tft.width() / 2, 15);
 }
-
 
 ///////////////////////// SET COLOR FUNTIONS /////////////////////////
 
