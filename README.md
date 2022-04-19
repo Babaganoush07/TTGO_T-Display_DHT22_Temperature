@@ -40,6 +40,7 @@
 - ![TFT_eSPI](https://user-images.githubusercontent.com/94538153/162488633-a6887fd5-325b-4ed0-ba23-afcef23e9872.png "TFT_eSPI Library Image")
 - ![AdafruitUnifiedSensor](https://user-images.githubusercontent.com/94538153/162489075-3b57403f-0405-49c1-aa66-3387ea798d48.png "Adafruit Unified Sensor Image")
 - ![DHTsensorLibrary](https://user-images.githubusercontent.com/94538153/162488862-89af9448-5ba8-4e7a-a414-3fb66ad52b57.png "DHT sensor Library Image")
+- ![ttgo_wiring_50](https://user-images.githubusercontent.com/94538153/164035241-f340d801-1e85-40fe-820a-a8fbd9a3e052.jpg "T-Display / DHT22 wiring diagram")
 - ![DHT22wiring](https://user-images.githubusercontent.com/94538153/162485826-41eff1d1-e1b9-491a-ac0f-2e291b7a6195.jpg "T-Display / DHT22 wiring diagram")
 
 
