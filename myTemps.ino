@@ -140,7 +140,7 @@ void print_wakeup_reason(){
 
   switch(wakeup_reason){
     case ESP_SLEEP_WAKEUP_EXT0 : Serial.println("Wakeup caused by external signal using RTC_IO");
-    //show_battery();
+    show_battery();
     break;
     case ESP_SLEEP_WAKEUP_EXT1 : Serial.println("Wakeup caused by external signal using RTC_CNTL"); break;
     case ESP_SLEEP_WAKEUP_TIMER : Serial.println("Wakeup caused by timer"); break;
@@ -189,6 +189,9 @@ void loop() {
   int temp = dht.readTemperature(true); // range of -40 to 257 true = F
   int rh = dht.readHumidity(); // range of 0 to 100
   
+  // Compute heat index in Fahrenheit (the default), change out temp for hif to display Heat Index.
+  // int hif = dht.computeHeatIndex(temp, rh);
+  
   // Check if any reads failed.
   if (isnan(rh) || isnan(temp)) {
     Serial.println(F("Failed to read from DHT sensor!"));
@@ -197,15 +200,15 @@ void loop() {
   
   ///////////////////////// SET HIGHS AND LOWS /////////////////////////
 
-  if (millis() >= refresh + (24*60*60*1000)){        // Reset High and Low after 24 hours, 86400000 milliseconds in a day
-    high_temp = temp;
-    low_temp = temp;
+  if (millis() >= refresh + (24*60*60*1000)){    // Reset High and Low after 24 hours, 86400000 milliseconds in a day
+    high_temp = temp;    // high_temp = hif;
+    low_temp = temp;    // low_temp = hif;
     high_rh = rh;
     low_rh = rh;
     refresh = millis();}
   else {
-    if(temp >= high_temp){high_temp = temp;}
-    if(temp <= low_temp){low_temp = temp;}
+    if(temp >= high_temp){high_temp = temp;}    //  if(hif >= high_temp){high_temp = hif;}
+    if(temp <= low_temp){low_temp = temp;}    //  if(hif <= low_temp){low_temp = hif;}  
     if(rh >= high_rh){high_rh = rh;}
     if(rh <= low_rh){low_rh = rh;}
   }
@@ -224,7 +227,7 @@ void loop() {
   tft.drawString("   ", tft.width() / 2, 185);
   
   // PRINT DATA
-  temp_color(temp);
+  temp_color(temp);    //  temp_color(hif);
   tft.drawNumber(temp, tft.width() / 2, 65);
   rh_color(rh);
   tft.drawNumber(rh, tft.width() / 2, 185);
