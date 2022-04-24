@@ -1,0 +1,16 @@
+///////////////////////// SET BACKLIGHT BRIGHTNESS /////////////////////////
+/*
+ * using the PWM controller on the esp you can change the backlight brightness:
+ * The PWM is dissabled during light sleep.
+ * ledcSetup(ledChannel, freq, resolution); // 0-15, 5000, 8
+ * ledcAttachPin(TFT_BL, ledChannel); // TFT_BL, 0 - 15
+ * ledcWrite(ledChannel, brightness); // 0-15, 0-255 (with 8 bit resolution)
+ */
+const int pwmFreq = 5000;
+const int pwmResolution = 8;
+const int pwmLedChannelTFT = 0;
+const int backlight = 10;
+
+ledcSetup(pwmLedChannelTFT, pwmFreq, pwmResolution);
+ledcAttachPin(TFT_BL, pwmLedChannelTFT);
+ledcWrite(pwmLedChannelTFT, backlight);
