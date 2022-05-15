@@ -53,41 +53,41 @@ void show_battery(){
     tft.fillRect(32, 4, 2, 14, TFT_RED);
     tft.fillRect(34, 8, 3, 6, TFT_RED);
     tft.drawString(voltage, 45, 8, 1);
-  }
+  } // END IF
   if(battery_voltage >= 3.0){
     tft.fillRect(6, 6, 4, 10, TFT_RED);
     tft.drawString(voltage, 45, 8, 1);
-  }
+  } // END IF
   if(battery_voltage >= 3.2){
     tft.fillRect(6, 6, 6, 10, TFT_RED);
     tft.drawString(voltage, 45, 8, 1);
-  }
+  } // END IF
   if(battery_voltage >= 3.4){
     tft.fillRect(6, 6, 11, 10, TFT_YELLOW);
     tft.drawString(voltage, 45, 8, 1);
-  }
+  } // END IF
   if(battery_voltage >= 3.6){
     tft.fillRect(6, 6, 16, 10, TFT_YELLOW);
     tft.drawString(voltage, 45, 8, 1);
-  }
+  } // END IF
   if(battery_voltage >= 3.8){
     tft.fillRect(6, 6, 21, 10, TFT_GREEN);
     tft.drawString(voltage, 45, 8, 1);
-  }
+  } // END IF
   if(battery_voltage >= 4.0){
     tft.fillRect(6, 6, 26, 10, TFT_GREEN);
     tft.drawString(voltage, 45, 8, 1);
-  }
+  } // END IF
   if(battery_voltage >= 4.60){
     tft.fillRect(6, 6, 26, 10, TFT_GREEN);
     tft.setTextColor(TFT_BLACK, TFT_GREEN);
     tft.drawString("CHG", 10, 7, 1);
-  }
+  } // END IF
   if(battery_voltage >= 4.85){
     tft.fillRect(6, 6, 26, 10, TFT_SKYBLUE);
     tft.setTextColor(TFT_BLACK, TFT_SKYBLUE);
     tft.drawString("USB", 10, 7, 1);
-  }  
+  }   // END IF
   
   delay(5*1000);
   // add the title back
@@ -96,7 +96,7 @@ void show_battery(){
   tft.setTextSize(2);
   tft.setTextColor(TFT_GREEN, TFT_BLACK); 
   tft.drawString("TEMPERATURE", tft.width() / 2, 15);
-}
+} // END show_battery
 
 ///////////////////////// SET COLOR FUNTIONS /////////////////////////
 
@@ -111,15 +111,15 @@ void temp_color(int x){
   else if ( x >= 41 ){tft.setTextColor(TFT_GREEN, TFT_BLACK);}
   else if ( x >= 23 ){tft.setTextColor(TFT_SKYBLUE, TFT_BLACK);}
   else if ( x >= 5 ){tft.setTextColor(TFT_BLUE, TFT_BLACK);}
-  else if ( x < 5 ){tft.setTextColor(TFT_VIOLET, TFT_BLACK);}
-}
+  else if ( x < 5 ){tft.setTextColor(TFT_VIOLET, TFT_BLACK);} // END IF ELSE
+} // END temp_color
 
 void rh_color(int x){
   if ( x >= 70 ){tft.setTextColor(TFT_RED, TFT_BLACK);}
   else if (x >= 60 ){tft.setTextColor(TFT_ORANGE, TFT_BLACK);}
   else if (x >= 30 ){tft.setTextColor(TFT_GREEN, TFT_BLACK);}
-  else if (x < 30 ){tft.setTextColor(TFT_BLUE, TFT_BLACK);}
-}
+  else if (x < 30 ){tft.setTextColor(TFT_BLUE, TFT_BLACK);} // END IF ELSE
+} // END rh_color
 
 ///////////////////////// LIGHT SLEEP FUNTIONS /////////////////////////
 
@@ -131,7 +131,7 @@ void go_to_sleep(int ms){
   esp_sleep_enable_timer_wakeup(ms * 1000);
   esp_sleep_enable_ext0_wakeup(GPIO_NUM_35, 0);
   esp_light_sleep_start();
-}
+} // END go_to_sleep
 
 void print_wakeup_reason(){
   esp_sleep_wakeup_cause_t wakeup_reason;
@@ -147,8 +147,8 @@ void print_wakeup_reason(){
     case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println("Wakeup caused by touchpad"); break;
     case ESP_SLEEP_WAKEUP_ULP : Serial.println("Wakeup caused by ULP program"); break;
     default : Serial.printf("Wakeup was not caused by deep sleep: %d\n",wakeup_reason); break;
-  } 
-}
+  }  // END SWITCH
+} // END print_wakeup_reason
 
 /////////////////////////////////////////////////////////////////////////
 
@@ -196,7 +196,7 @@ void loop() {
   if (isnan(rh) || isnan(temp)) {
     Serial.println(F("Failed to read from DHT sensor!"));
     return;
-  }
+  } // END IF
   
   ///////////////////////// SET HIGHS AND LOWS /////////////////////////
 
@@ -211,7 +211,7 @@ void loop() {
     if(temp <= low_temp){low_temp = temp;}    //  if(hif <= low_temp){low_temp = hif;}  
     if(rh >= high_rh){high_rh = rh;}
     if(rh <= low_rh){low_rh = rh;}
-  }
+  } // END IF ELSE
  
   //////////////////////////////////////////////////////////////////////
   Serial.printf("TEMP: %d, HIGH: %d, LOW:, %d\n", temp, high_temp, low_temp);
