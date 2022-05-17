@@ -1,6 +1,5 @@
 #include <DHT.h>
 #include <TFT_eSPI.h>
-#include <SPI.h>
 
 ///////////////////////// SET VARIABLES /////////////////////////
 
@@ -183,20 +182,25 @@ void setup() {
 void loop() {
   
   print_wakeup_reason();
-  delay(200);   // THIS PREVENTS THE DEBOUNCE FROM THE SLEEP INTERUPT
+  delay(500);   // THIS PREVENTS THE DEBOUNCE FROM THE SLEEP INTERUPT
   Serial.println("Getting temps.");
   
   int temp = dht.readTemperature(true); // range of -40 to 257 true = F
   int rh = dht.readHumidity(); // range of 0 to 100
-  
-  // Compute heat index in Fahrenheit (the default), change out temp for hif to display Heat Index.
   // int hif = dht.computeHeatIndex(temp, rh);
-  
-  // Check if any reads failed.
-  if (isnan(rh) || isnan(temp)) {
+  // Compute heat index in Fahrenheit (the default), change out temp for hif to display Heat Index.
+    
+  // CHECK IF ANY OF THE SENSOR READS FAILED
+  if(isnan(rh) || isnan(temp)){
     Serial.println(F("Failed to read from DHT sensor!"));
     return;
   } // END IF
+  
+  // IF ANY READS FAILED START A LOOP TO GET THEM
+  while(isnan(rh) || isnan(temp)) {
+    int temp = dht.readTemperature(true);
+    int rh = dht.readHumidity();
+  } // END WHILE
   
   ///////////////////////// SET HIGHS AND LOWS /////////////////////////
 
