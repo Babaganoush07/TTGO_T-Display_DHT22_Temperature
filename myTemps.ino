@@ -95,7 +95,7 @@ void show_battery(){
   tft.setTextSize(2);
   tft.setTextColor(TFT_GREEN, TFT_BLACK); 
   tft.drawString("TEMPERATURE", tft.width() / 2, 15);
-} // END show_battery
+} // END show_battery()
 
 ///////////////////////// SET COLOR FUNTIONS /////////////////////////
 
@@ -111,14 +111,14 @@ void temp_color(int x){
   else if ( x >= 23 ){tft.setTextColor(TFT_SKYBLUE, TFT_BLACK);}
   else if ( x >= 5 ){tft.setTextColor(TFT_BLUE, TFT_BLACK);}
   else if ( x < 5 ){tft.setTextColor(TFT_VIOLET, TFT_BLACK);} // END IF ELSE
-} // END temp_color
+} // END temp_color()
 
 void rh_color(int x){
   if ( x >= 70 ){tft.setTextColor(TFT_RED, TFT_BLACK);}
   else if (x >= 60 ){tft.setTextColor(TFT_ORANGE, TFT_BLACK);}
   else if (x >= 30 ){tft.setTextColor(TFT_GREEN, TFT_BLACK);}
   else if (x < 30 ){tft.setTextColor(TFT_BLUE, TFT_BLACK);} // END IF ELSE
-} // END rh_color
+} // END rh_color()
 
 ///////////////////////// LIGHT SLEEP FUNTIONS /////////////////////////
 
@@ -130,7 +130,7 @@ void go_to_sleep(int ms){
   esp_sleep_enable_timer_wakeup(ms * 1000);
   esp_sleep_enable_ext0_wakeup(GPIO_NUM_35, 0);
   esp_light_sleep_start();
-} // END go_to_sleep
+} // END go_to_sleep()
 
 void print_wakeup_reason(){
   esp_sleep_wakeup_cause_t wakeup_reason;
@@ -147,7 +147,7 @@ void print_wakeup_reason(){
     case ESP_SLEEP_WAKEUP_ULP : Serial.println("Wakeup caused by ULP program"); break;
     default : Serial.printf("Wakeup was not caused by deep sleep: %d\n",wakeup_reason); break;
   }  // END SWITCH
-} // END print_wakeup_reason
+} // END print_wakeup_reason()
 
 /////////////////////////////////////////////////////////////////////////
 
@@ -175,7 +175,7 @@ void setup() {
   tft.drawLine(0, 145, 250, 145, TFT_BLUE);
   tft.drawString("H:", 15, 230);
   tft.drawString("L:", tft.width() / 2 + 10, 230);
-}
+} // END setup()
 
 //////////////////////////////////////////////////////////////////////
 
@@ -189,18 +189,39 @@ void loop() {
   int rh = dht.readHumidity(); // range of 0 to 100
   // int hif = dht.computeHeatIndex(temp, rh);
   // Compute heat index in Fahrenheit (the default), change out temp for hif to display Heat Index.
+
+  ///////////////////////// CHECK FOR FAILED SENSOR READS /////////////////////////
     
   // CHECK IF ANY OF THE SENSOR READS FAILED
   if(isnan(rh) || isnan(temp)){
     Serial.println(F("Failed to read from DHT sensor!"));
     return;
-  } // END IF
+  } // END NAN IF
   
   // IF ANY READS FAILED START A LOOP TO GET THEM
   while(isnan(rh) || isnan(temp)) {
+    Serial.println("NAN While Loop");
     int temp = dht.readTemperature(true);
     int rh = dht.readHumidity();
   } // END WHILE
+
+  ///////////////////////// CHECK FOR VALUE ERRORS /////////////////////////
+  // I KEEP GETTING AN ERROR/GLITCH WHERE IT RECORDS THE TEMP AND RH AS A
+  // MASSIVE NUMBER LIKE 1254729347. BUT IT ONLY HAPPENS AFTER A LIGHT SLEEP
+  // AND ONLY DURING HIGH TEMPERATURES. MIGHT JUST BE THE SENSOR.
+
+  // CHECK IF VALUES ARE MESSED UP
+  if(temp < -40 || temp > 257){
+    int temp = dht.readTemperature(true);
+    Serial.print("Temp: ");
+    Serial.println(temp);
+  } // END temp IF
+
+  if(rh < 0 || rh > 100){
+    int rh = dht.readHumidity();
+    Serial.print("RH: ");
+    Serial.println(rh);
+  } // END rh IF
   
   ///////////////////////// SET HIGHS AND LOWS /////////////////////////
 
@@ -264,4 +285,4 @@ void loop() {
   
   go_to_sleep(15 * 60000); // GET NEW DATA EVERY 15 MINUTES
 
-}
+} // END loop()
