@@ -42,7 +42,7 @@
 - ![AdafruitUnifiedSensor](https://user-images.githubusercontent.com/94538153/162489075-3b57403f-0405-49c1-aa66-3387ea798d48.png "Adafruit Unified Sensor Image")
 - ![DHTsensorLibrary](https://user-images.githubusercontent.com/94538153/162488862-89af9448-5ba8-4e7a-a414-3fb66ad52b57.png "DHT sensor Library Image")
 - **Wiring Diagram**
-- ![ttgo_wiring_50](https://user-images.githubusercontent.com/94538153/164035241-f340d801-1e85-40fe-820a-a8fbd9a3e052.jpg "T-Display / DHT22 wiring diagram")
+- ![DHT22Wire](https://user-images.githubusercontent.com/94538153/169334762-486ba0c7-edf3-4211-9f30-17b5da5965ed.png)
 - **Screen Layout**
 - ![ttgo-screen](https://user-images.githubusercontent.com/94538153/164036125-dc2f64c3-af49-40ee-814b-bac53565c991.jpg)
 
@@ -57,6 +57,8 @@
 	- In Arduino/libraries/TFT_eSPI/User_Setup_Select.h
 	- Comment out this line: `#include <User_Setup.h> // Default setup is root library folder`
 	- Un-comment this line: `#include <User_Setups/Setup25_TTGO_T_Display.h>  // Setup file for ESP32 and TTGO T-Display ST7789V SPI bus TFT`
+- I had an issue using the 3v3 pin where I would get a NAN value
+or get a reading of 2147483647. Switching to the 5v solved this for me.
 
 
 ## Usage
