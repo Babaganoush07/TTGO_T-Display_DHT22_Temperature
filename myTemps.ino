@@ -195,34 +195,11 @@ void loop() {
   // CHECK IF ANY OF THE SENSOR READS FAILED
   if(isnan(rh) || isnan(temp)){
     Serial.println(F("Failed to read from DHT sensor!"));
+    temp = dht.readTemperature(true);
+    rh = dht.readHumidity();
     return;
   } // END NAN IF
-  
-  // IF ANY READS FAILED START A LOOP TO GET THEM
-  while(isnan(rh) || isnan(temp)) {
-    Serial.println("NAN While Loop");
-    int temp = dht.readTemperature(true);
-    int rh = dht.readHumidity();
-  } // END WHILE
-
-  ///////////////////////// CHECK FOR VALUE ERRORS /////////////////////////
-  // I KEEP GETTING AN ERROR/GLITCH WHERE IT RECORDS THE TEMP AND RH AS A
-  // MASSIVE NUMBER LIKE 1254729347. BUT IT ONLY HAPPENS AFTER A LIGHT SLEEP
-  // AND ONLY DURING HIGH TEMPERATURES. MIGHT JUST BE THE SENSOR.
-
-  // CHECK IF VALUES ARE MESSED UP
-  if(temp < -40 || temp > 257){
-    int temp = dht.readTemperature(true);
-    Serial.print("Temp: ");
-    Serial.println(temp);
-  } // END temp IF
-
-  if(rh < 0 || rh > 100){
-    int rh = dht.readHumidity();
-    Serial.print("RH: ");
-    Serial.println(rh);
-  } // END rh IF
-  
+   
   ///////////////////////// SET HIGHS AND LOWS /////////////////////////
 
   if (millis() >= refresh + (24*60*60*1000)){    // Reset High and Low after 24 hours, 86400000 milliseconds in a day
