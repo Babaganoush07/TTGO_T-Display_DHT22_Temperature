@@ -50,7 +50,7 @@
 ## Setup
 - Manufacturer info: [Xinyuan-LilyGO](https://github.com/Xinyuan-LilyGO/TTGO-T-Display)
 - You will need the Adruino IDE. (I am on windows)
-- Add [esp32 support](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/) by adding *https://dl.espressif.com/dl/package_esp32_index.json* in the preferences
+- Add [esp32 support](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/) by adding `https://dl.espressif.com/dl/package_esp32_index.json` in the preferences
 - Select the board: Tools -> Board: -> TTGO LoRa32-OLED V1
 - Set the Serial at 921600
 - **TFT_eSPI**
