@@ -38,7 +38,7 @@
 - ![AdafruitUnifiedSensor](https://user-images.githubusercontent.com/94538153/162489075-3b57403f-0405-49c1-aa66-3387ea798d48.png "Adafruit Unified Sensor Image")
 - ![DHTsensorLibrary](https://user-images.githubusercontent.com/94538153/162488862-89af9448-5ba8-4e7a-a414-3fb66ad52b57.png "DHT sensor Library Image")
 - **Wiring Diagram**
-- ![DHT22Wire](https://user-images.githubusercontent.com/94538153/169334762-486ba0c7-edf3-4211-9f30-17b5da5965ed.png)
+- <img src="https://user-images.githubusercontent.com/94538153/181092689-0da6602f-4508-4ad2-801a-42542cd5b229.png" width="800" height="450" />
 - **Screen Layout**
 - <img src="https://user-images.githubusercontent.com/94538153/181081335-64b259d9-553c-445c-910a-efe8e99b0fa5.jpg" width="250" height="400" />
 
