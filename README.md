@@ -40,7 +40,7 @@
 - **Wiring Diagram**
 - ![DHT22Wire](https://user-images.githubusercontent.com/94538153/169334762-486ba0c7-edf3-4211-9f30-17b5da5965ed.png)
 - **Screen Layout**
-- ![ttgo-screen](https://user-images.githubusercontent.com/94538153/164036125-dc2f64c3-af49-40ee-814b-bac53565c991.jpg)
+- <img src="https://user-images.githubusercontent.com/94538153/181081335-64b259d9-553c-445c-910a-efe8e99b0fa5.jpg" width="250" height="400" />
 
 
 ## Setup
