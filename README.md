@@ -29,10 +29,7 @@
 
 ## Features
 - Gets the Temperature and Humidity and displays it on the screen.
-- Light sleeps for 15 minutes and then updates the temps.
-- Wakes on a timer or a button.
-- Pressing the wake button also gets the battery voltage and displays it on the screen.
-- Resets the Highs and Lows every 24 hours.
+- Screen brightness adjusts to the ambient light.
 
 
 ## Screenshots
