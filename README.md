@@ -9,7 +9,6 @@
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
 * [Acknowledgements](#acknowledgements)
 
 
@@ -57,8 +56,6 @@
 	- In Arduino/libraries/TFT_eSPI/User_Setup_Select.h
 	- Comment out this line: `#include <User_Setup.h> // Default setup is root library folder`
 	- Un-comment this line: `#include <User_Setups/Setup25_TTGO_T_Display.h>  // Setup file for ESP32 and TTGO T-Display ST7789V SPI bus TFT`
-- I had an issue using the 3v3 pin where I would get a NAN value
-or get a reading of 2147483647. Switching to the 5v solved this for me.
 
 
 ## Usage
@@ -70,14 +67,7 @@ or get a reading of 2147483647. Switching to the 5v solved this for me.
 
 
 ## Project Status
-Project is: _in progress_.
-
-
-## Room for Improvement
-To do:
-- Add a startup message / icon.
-- Still need an external battery.
-- Need to make a case.
+Project is: _Completed_.
 
 
 ## Acknowledgements
