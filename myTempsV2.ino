@@ -74,18 +74,63 @@ void drawScreen(float temp, float rh, float battery_voltage){
   spr.fillSprite(TFT_BLACK);
 
   //Show battery Voltage
-  spr.setTextDatum(TR_DATUM);
-  if(battery_voltage <= 3.3) spr.setTextColor(TFT_RED);
-  if(battery_voltage >= 3.4) spr.setTextColor(TFT_YELLOW);
-  if(battery_voltage >= 3.8) spr.setTextColor(TFT_GREEN);
+  int percent = map(battery_voltage, 0.0, 4.59, 0.0, 100.0);
+  //String voltage = "Voltage " + String(battery_voltage) + "V";
+  String voltage = String(percent) + "%";
   
-  if(battery_voltage >= 4.60){ 
-    spr.drawString("CHG", 130, 1, 2);
-  }else if(battery_voltage >= 4.85){
-    spr.drawString("USB", 130, 1, 2);
-  }else{
-    spr.drawFloat(battery_voltage, 2, 130, 1, 2);
-  }
+  spr.setTextDatum(TL_DATUM);
+  spr.fillRect(0, 0, tft.width(), 24, TFT_BLACK);
+  spr.fillRect(4, 4, 28, 2, TFT_DARKGREY);   //TOP OF BATTERY
+  spr.fillRect(4, 16, 28, 2, TFT_DARKGREY);  //BOTTOM
+  spr.fillRect(4, 4, 2, 12, TFT_DARKGREY);   //LEFT
+  spr.fillRect(32, 4, 2, 14, TFT_DARKGREY);  //RIGHT
+  spr.fillRect(34, 8, 3, 6, TFT_DARKGREY);   //TIP
+
+  spr.setTextSize(1);
+  spr.setTextColor(TFT_WHITE, TFT_BLACK);
+
+  if(battery_voltage <= 2.99){
+    spr.fillRect(4, 4, 28, 2, TFT_RED);
+    spr.fillRect(4, 16, 28, 2, TFT_RED);
+    spr.fillRect(4, 4, 2, 14, TFT_RED);
+    spr.fillRect(32, 4, 2, 14, TFT_RED);
+    spr.fillRect(34, 8, 3, 6, TFT_RED);
+    spr.drawString(voltage, 45, 8, 1);
+  } // END IF
+  if(battery_voltage >= 3.0){
+    spr.fillRect(6, 6, 4, 10, TFT_RED);
+    spr.drawString(voltage, 45, 8, 1);
+  } // END IF
+  if(battery_voltage >= 3.2){
+    spr.fillRect(6, 6, 6, 10, TFT_RED);
+    spr.drawString(voltage, 45, 8, 1);
+  } // END IF
+  if(battery_voltage >= 3.4){
+    spr.fillRect(6, 6, 11, 10, TFT_YELLOW);
+    spr.drawString(voltage, 45, 8, 1);
+  } // END IF
+  if(battery_voltage >= 3.6){
+    spr.fillRect(6, 6, 16, 10, TFT_YELLOW);
+    spr.drawString(voltage, 45, 8, 1);
+  } // END IF
+  if(battery_voltage >= 3.8){
+    spr.fillRect(6, 6, 21, 10, TFT_GREEN);
+    spr.drawString(voltage, 45, 8, 1);
+  } // END IF
+  if(battery_voltage >= 4.0){
+    spr.fillRect(6, 6, 26, 10, TFT_GREEN);
+    spr.drawString(voltage, 45, 8, 1);
+  } // END IF
+  if(battery_voltage >= 4.60){
+    spr.fillRect(6, 6, 26, 10, TFT_GREEN);
+    spr.setTextColor(TFT_BLACK, TFT_GREEN);
+    spr.drawString("CHG", 10, 7, 1);
+  } // END IF
+  if(battery_voltage >= 4.85){
+    spr.fillRect(6, 6, 26, 10, TFT_SKYBLUE);
+    spr.setTextColor(TFT_BLACK, TFT_SKYBLUE);
+    spr.drawString("USB", 10, 7, 1);
+  }   // END IF
   
   // Write the temp centered in the screen
   spr.setTextDatum(MC_DATUM);
