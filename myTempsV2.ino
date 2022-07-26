@@ -62,7 +62,7 @@ void drawScreen(float temp, float rh, float battery_voltage){
   spr.fillSprite(TFT_BLACK);
 
   //Show battery Voltage
-  int percent = map(battery_voltage, 0.0, 4.59, 0.0, 100.0);
+  int percent = map(battery_voltage, 2.7, 4.7, 0.0, 100.0);
   //String voltage = "Voltage " + String(battery_voltage) + "V";
   String voltage = String(percent) + "%";
   
