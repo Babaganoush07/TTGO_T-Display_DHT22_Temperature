@@ -13,7 +13,8 @@ const int pwmFreq = 5000;
 const int pwmResolution = 8;
 const int pwmLedChannelTFT = 0;
 
-#define ADC_PIN 34 // Battery Voltage Pin
+// Battery Voltage Pin
+#define ADC_PIN 34
 int vref = 1100;
 float battery_voltage = 0.0;
 
@@ -26,14 +27,15 @@ float temp = 0.0;
 float rh = 0.0;
 
 // Millis timer delay
-int waitPeriod = 3000;
+int waitPeriod = 3500;
 unsigned long start = 0;
 
+// A dot to view screen refresh rate
 int ball = 0;
 int moveAmount = 1;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   dht.begin();
   tft.begin();
   tft.fillScreen(TFT_BLACK);
@@ -52,6 +54,7 @@ void loop(void) {
     start = millis();
   } // END millis timer
 
+  // Adjust screen brightness
   int brightness = map(analogRead(photoTransistor), 0, 4095, 10, 255);
   ledcWrite(pwmLedChannelTFT, brightness);  
   drawScreen(temp, rh, battery_voltage);
@@ -61,20 +64,30 @@ void drawScreen(float temp, float rh, float battery_voltage){
   spr.createSprite(135, 280);
   spr.fillSprite(TFT_BLACK);
 
-  //Show battery Voltage
-  int percent = map(battery_voltage, 2.99, 4.60, 0.0, 100.0);
-  //String voltage = "Voltage " + String(battery_voltage) + "V";
-  String voltage = String(percent) + "%";
-  
+  // 3.00V == 1690, 4.20V == 2370
+  // The TTGO powered off at around 2.50V
+  int percent = map(analogRead(ADC_PIN), 1690, 2370, 0, 100);
+  String voltage = String(battery_voltage) + "V";
+  String percentText = String(percent) + "%";
+
+  // Battery Icon
   spr.setTextDatum(TL_DATUM);
-  spr.fillRect(4, 4, 28, 2, TFT_DARKGREY);   //TOP OF BATTERY
+  spr.fillRect(4, 4, 28, 2, TFT_DARKGREY);   //TOP
   spr.fillRect(4, 16, 28, 2, TFT_DARKGREY);  //BOTTOM
   spr.fillRect(4, 4, 2, 12, TFT_DARKGREY);   //LEFT
   spr.fillRect(32, 4, 2, 14, TFT_DARKGREY);  //RIGHT
   spr.fillRect(34, 8, 3, 6, TFT_DARKGREY);   //TIP
 
   spr.setTextSize(1);
-  spr.setTextColor(TFT_WHITE, TFT_BLACK);
+  spr.setTextColor(TFT_WHITE);
+
+  // Show battery Voltage if on Battery power
+  // Else show current voltage
+  if(percent <= 100){
+    spr.drawString(percentText, 45, 8, 1);
+  }else{
+    spr.drawString(voltage, 45, 8, 1);
+  }
 
   if(battery_voltage <= 2.99){
     spr.fillRect(4, 4, 28, 2, TFT_RED);
@@ -82,31 +95,24 @@ void drawScreen(float temp, float rh, float battery_voltage){
     spr.fillRect(4, 4, 2, 14, TFT_RED);
     spr.fillRect(32, 4, 2, 14, TFT_RED);
     spr.fillRect(34, 8, 3, 6, TFT_RED);
-    spr.drawString(voltage, 45, 8, 1);
   } // END IF
   if(battery_voltage >= 3.0){
     spr.fillRect(6, 6, 4, 10, TFT_RED);
-    spr.drawString(voltage, 45, 8, 1);
   } // END IF
   if(battery_voltage >= 3.2){
     spr.fillRect(6, 6, 6, 10, TFT_RED);
-    spr.drawString(voltage, 45, 8, 1);
   } // END IF
   if(battery_voltage >= 3.4){
     spr.fillRect(6, 6, 11, 10, TFT_YELLOW);
-    spr.drawString(voltage, 45, 8, 1);
   } // END IF
   if(battery_voltage >= 3.6){
     spr.fillRect(6, 6, 16, 10, TFT_YELLOW);
-    spr.drawString(voltage, 45, 8, 1);
   } // END IF
   if(battery_voltage >= 3.8){
     spr.fillRect(6, 6, 21, 10, TFT_GREEN);
-    spr.drawString(voltage, 45, 8, 1);
   } // END IF
   if(battery_voltage >= 4.0){
     spr.fillRect(6, 6, 26, 10, TFT_GREEN);
-    spr.drawString(voltage, 45, 8, 1);
   } // END IF
   if(battery_voltage >= 4.60){
     spr.fillRect(6, 6, 26, 10, TFT_GREEN);
@@ -129,17 +135,18 @@ void drawScreen(float temp, float rh, float battery_voltage){
   spr.drawString("Humidity", centerX, centerY + 15, 4);
   spr.drawNumber(int(rh), centerX, centerY + 50, 6);
 
-  //move the ball
+  // Move the ball
   tft.fillCircle(ball,230,2,TFT_WHITE);
   ball = ball + moveAmount;
 
-  // reverse the direction of the ball at the ends:
+  // Reverse the direction of the ball at the ends:
   if (ball <= 0 || ball >= 135) {
     moveAmount = -moveAmount;
   }
   
   // Now push the sprite to the TFT at position 0,0 on screen
   spr.pushSprite(0, 0);
+  // And then clear the memory
   spr.deleteSprite();
   
 } // END drawScreen(temp, rh, battery_voltage)
